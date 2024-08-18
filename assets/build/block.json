@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "book-manager/book",
+  "version": "0.1.0",
+  "title": "Book Manager",
+  "category": "widgets",
+  "icon": "book",
+  "description": "A block to manage books",
+  "example": {},
+  "attributes": {
+    "styles": {
+      "type": "object",
+      "default": {
+        "layout": "grid"
+      }
+    },
+    "settings": {
+      "type": "object",
+      "default": {
+        "search": "",
+        "perPage": 10,
+        "currentPage": 1,
+        "order": "desc",
+        "orderBy": "date"
+      }
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

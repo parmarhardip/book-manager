@@ -23,39 +23,39 @@ if ( $books->have_posts() ) {
 	while ( $books->have_posts() ) {
 		$books->the_post();
 		?>
-        <div class="book-listing">
-            <h2><?php the_title(); ?></h2>
-            <div class="book-content">
+		<div class="book-listing">
+			<h2><?php the_title(); ?></h2>
+			<div class="book-content">
 				<?php the_content(); ?>
-            </div>
-            <div class="book-meta">
+			</div>
+			<div class="book-meta">
 				<?php
 				$author_name  = get_post_meta( get_the_ID(), '_book_author_name', true );
 				$author_email = get_post_meta( get_the_ID(), '_book_author_email', true );
 
 				if ( ! empty( $author_name ) ) {
 					?>
-                    <span class="author">
-                        <?php esc_html_e( 'Author:', 'book-manager' ); ?>
-                        <?php echo esc_html( $author_name ); ?>
-                    </span>
+					<span class="author">
+						<?php esc_html_e( 'Author:', 'book-manager' ); ?>
+						<?php echo esc_html( $author_name ); ?>
+					</span>
 					<?php
 				}
 
 				if ( ! empty( $author_email ) ) {
 					?>
-                    <span class="email">
-                        <?php esc_html_e( 'Email:', 'book-manager' ); ?>
-                        <?php echo esc_html( $author_email ); ?>
-                    </span>
+					<span class="email">
+						<?php esc_html_e( 'Email:', 'book-manager' ); ?>
+						<?php echo esc_html( $author_email ); ?>
+					</span>
 					<?php
 				}
 				?>
-            </div>
-            <div class="book-image">
+			</div>
+			<div class="book-image">
 				<?php the_post_thumbnail( 'medium' ); ?>
-            </div>
-        </div>
+			</div>
+		</div>
 		<?php
 	}
 }

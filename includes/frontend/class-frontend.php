@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * The frontend class of Book Manager.
+ *
+ * @package    Book_Manager
+ * @subpackage Frontend
+ */
+
+namespace Book_Manager;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die();
 }
@@ -8,12 +17,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Book_Manager_FrontEnd
  * Frontend class of Book Manager.
  */
-class Book_Manager_FrontEnd {
+class FrontEnd {
 
 	/**
 	 * The instance of the class.
 	 *
-	 * @var Book_Manager_FrontEnd
+	 * @var FrontEnd
 	 */
 	private static $instance;
 
@@ -21,7 +30,7 @@ class Book_Manager_FrontEnd {
 	 * Return the plugin instance
 	 *
 	 * @since 1.0
-	 * @return Book_Manager_FrontEnd
+	 * @return FrontEnd
 	 */
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
@@ -56,10 +65,14 @@ class Book_Manager_FrontEnd {
 	public function enqueue_scripts() {
 		wp_enqueue_style( 'book-manager-frontend', BOOK_MANAGER_ROOT_ASSETS_URL_PATH . 'css/frontend.css', array(), BOOK_MANAGER_VERSION );
 		wp_enqueue_script( 'book-manager-frontend', BOOK_MANAGER_ROOT_ASSETS_URL_PATH . 'js/frontend.js', array( 'jquery' ), BOOK_MANAGER_VERSION, true );
-		wp_localize_script( 'book-manager-frontend', 'bookManagerFrontend', array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'error'    => __( 'Something went wrong. Please try again.', 'book-manager' ),
-		) );
+		wp_localize_script(
+			'book-manager-frontend',
+			'bookManagerFrontend',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'error'    => __( 'Something went wrong. Please try again.', 'book-manager' ),
+			)
+		);
 	}
 
 	/**

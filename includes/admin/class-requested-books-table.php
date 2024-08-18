@@ -131,8 +131,8 @@ class Requested_Books_Table extends \WP_List_Table {
 		$approve_url = wp_nonce_url(
 			add_query_arg(
 				array(
-					'action' => 'approve_book',
-					'book_id'   => $item['ID'],
+					'action'  => 'approve_book',
+					'book_id' => $item['ID'],
 				),
 				admin_url( 'admin-post.php' )
 			),
@@ -142,8 +142,8 @@ class Requested_Books_Table extends \WP_List_Table {
 		$reject_url = wp_nonce_url(
 			add_query_arg(
 				array(
-					'action' => 'reject_book',
-					'book_id'   => $item['ID'],
+					'action'  => 'reject_book',
+					'book_id' => $item['ID'],
 				),
 				admin_url( 'admin-post.php' )
 			),

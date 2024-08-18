@@ -1,19 +1,30 @@
 <?php
+/**
+ * The main class of Book Manager.
+ *
+ * @package    Book_Manager
+ * @subpackage Main
+ */
 
+namespace Book_Manager;
+
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	die();
 }
+
+use WP_REST_Response;
 
 /**
  * Class Book_Manager_Main
  * Main class of Book Manager.
  */
-class Book_Manager_Main {
+class Main {
 
 	/**
 	 * The instance of the class.
 	 *
-	 * @var Book_Manager_Main
+	 * @var Main
 	 */
 	private static $instance;
 
@@ -21,7 +32,7 @@ class Book_Manager_Main {
 	 * Return the plugin instance
 	 *
 	 * @since 1.0
-	 * @return Book_Manager_Main
+	 * @return Main
 	 */
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
@@ -40,11 +51,11 @@ class Book_Manager_Main {
 
 		if ( is_admin() ) {
 			// Initialize admin core.
-			Book_Manager_Admin::get_instance();
+			\Book_Manager\Admin::get_instance();
 		}
 
 		// Initialize frontend core.
-		Book_Manager_FrontEnd::get_instance();
+		\Book_Manager\FrontEnd::get_instance();
 	}
 
 	/**
@@ -132,6 +143,9 @@ class Book_Manager_Main {
 		);
 		register_post_status( 'hidden', $args );
 
+		// translators: %s: number of items.
+		$label_count = _n_noop( 'Requested <span class="count">(%s)</span>', 'Requested <span class="count">(%s)</span>', 'book-manager' );
+
 		$args = array(
 			'label'                     => _x( 'Rejected', 'book-manager' ),
 			'public'                    => true,
@@ -139,7 +153,7 @@ class Book_Manager_Main {
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
 			'exclude_from_search'       => true,
-			'label_count'               => _n_noop( 'Rejected <span class="count">(%s)</span>', 'Rejected <span class="count">(%s)</span>', 'book-manager' ),
+			'label_count'               => $label_count,
 		);
 		register_post_status( 'rejected', $args );
 	}
@@ -155,7 +169,7 @@ class Book_Manager_Main {
 	 * Enqueue block assets
 	 */
 	public function enqueue_block_editor_assets() {
-		$asset_file = include( BOOK_MANAGER_ROOT_ASSETS_DIR_PATH . 'build/index.asset.php' );
+		$asset_file = include BOOK_MANAGER_ROOT_ASSETS_DIR_PATH . 'build/index.asset.php';
 
 		wp_enqueue_script(
 			'book-manager-block-editor',
@@ -177,8 +191,8 @@ class Book_Manager_Main {
 	 * Prepare book data for REST API
 	 *
 	 * @param WP_REST_Response $response The response object.
-	 * @param WP_Post          $post     The original post object.
-	 * @param WP_REST_Request  $request  Request used to generate the response.
+	 * @param \WP_Post         $post     The original post object.
+	 * @param \WP_REST_Request $request  Request used to generate the response.
 	 *
 	 * @return WP_REST_Response
 	 */
@@ -193,5 +207,4 @@ class Book_Manager_Main {
 
 		return $response;
 	}
-
 }

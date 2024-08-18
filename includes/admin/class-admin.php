@@ -1,4 +1,12 @@
 <?php
+/**
+ * The admin class of Book Manager.
+ *
+ * @package    Book_Manager
+ * @subpackage Admin
+ */
+
+namespace Book_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die();
@@ -8,12 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Book_Manager_Admin
  * Admin class of Book Manager.
  */
-class Book_Manager_Admin {
+class Admin {
 
 	/**
 	 * The instance of the class.
 	 *
-	 * @var Book_Manager_Admin
+	 * @var Admin
 	 */
 	private static $instance;
 
@@ -21,7 +29,7 @@ class Book_Manager_Admin {
 	 * Return the plugin instance
 	 *
 	 * @since 1.0
-	 * @return Book_Manager_Admin
+	 * @return Admin
 	 */
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
@@ -79,7 +87,6 @@ class Book_Manager_Admin {
 			__( 'All Books', 'book-manager' ),
 			'manage_options',
 			'edit.php?post_type=book',
-
 		);
 
 		add_submenu_page(
@@ -98,7 +105,7 @@ class Book_Manager_Admin {
 	public function set_current_menu( $parent_file ) {
 		global $current_screen;
 
-		if ( $current_screen->post_type === 'book' ) {
+		if ( 'book' === $current_screen->post_type ) {
 			$parent_file = 'book-manager';
 		}
 
@@ -142,7 +149,6 @@ class Book_Manager_Admin {
 	 * Handle approve book
 	 */
 	public function handle_approve_book() {
-
 		// Validate and sanitize book ID
 		$book_id = isset( $_GET['book_id'] ) ? intval( $_GET['book_id'] ) : 0;
 
@@ -153,10 +159,12 @@ class Book_Manager_Admin {
 
 		if ( $book_id ) {
 			// Update post status to publish
-			wp_update_post( array(
-				'ID'          => $book_id,
-				'post_status' => 'publish',
-			) );
+			wp_update_post(
+				array(
+					'ID'          => $book_id,
+					'post_status' => 'publish',
+				)
+			);
 
 			// Send approval email to author
 			$email    = get_post_meta( $book_id, '_book_author_email', true );
@@ -164,7 +172,8 @@ class Book_Manager_Admin {
 			$post_url = get_permalink( $book_id );
 
 			$subject = __( 'Your Book Has Been Approved!', 'book-manager' );
-			$message = sprintf( __( 'Hello %s, your book has been approved! You can view it here: %s', 'book-manager' ), $name, $post_url );
+			// translators: %1$s: author name, %2$s: post URL
+			$message = sprintf( __( 'Hello %1$s, your book has been approved! You can view it here: %2$s', 'book-manager' ), $name, $post_url );
 
 			$sent = wp_mail( $email, $subject, $message );
 
@@ -191,15 +200,18 @@ class Book_Manager_Admin {
 
 		if ( $book_id ) {
 			// Update post status to rejected (custom status or delete)
-			wp_update_post( array(
-				'ID'          => $book_id,
-				'post_status' => 'rejected', // Use a custom post status or 'trash' to delete
-			) );
+			wp_update_post(
+				array(
+					'ID'          => $book_id,
+					'post_status' => 'rejected', // Use a custom post status or 'trash' to delete
+				)
+			);
 
 			$email = get_post_meta( $book_id, '_book_author_email', true );
 			$name  = get_post_meta( $book_id, '_book_author_name', true );
 
 			$subject = __( 'Your Book Submission Has Been Rejected', 'book-manager' );
+			// translators: %s: author name
 			$message = sprintf( __( 'Hello %s, we are sorry to inform you that your book submission has been rejected.', 'book-manager' ), $name );
 
 			$sent = wp_mail( $email, $subject, $message );
@@ -224,23 +236,21 @@ class Book_Manager_Admin {
 			switch ( $_GET['message'] ) {
 				case 'book_approved':
 					?>
-                    <div class="notice notice-success is-dismissible">
-                        <p><?php _e( 'The book has been successfully approved.', 'book-manager' ); ?></p>
-                    </div>
+					<div class="notice notice-success is-dismissible">
+						<p><?php _e( 'The book has been successfully approved.', 'book-manager' ); ?></p>
+					</div>
 					<?php
 					break;
 
 				case 'book_rejected':
 					?>
-                    <div class="notice notice-warning is-dismissible">
-                        <p><?php _e( 'The book has been successfully rejected.', 'book-manager' ); ?></p>
-                    </div>
+					<div class="notice notice-warning is-dismissible">
+						<p><?php _e( 'The book has been successfully rejected.', 'book-manager' ); ?></p>
+					</div>
 					<?php
 					break;
 				// You can add more cases here for other messages.
 			}
 		}
 	}
-
-
 }

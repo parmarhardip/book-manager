@@ -11,8 +11,6 @@
  * Text Domain: book-manager
  */
 
-use Book_Manager\Book_Manager;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

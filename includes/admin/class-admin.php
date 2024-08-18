@@ -13,8 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class Book_Manager_Admin
- * Admin class of Book Manager.
+ * Class Admin
  */
 class Admin {
 

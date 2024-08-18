@@ -2,12 +2,6 @@
 /**
  * Main class of Book Manager.
  */
-
-namespace Book_Manager;
-
-/**
- * Main class of Book Manager.
- */
 if ( ! class_exists( 'Book_Manager' ) ) {
 	/**
 	 * Class Book_Manager
@@ -56,7 +50,7 @@ if ( ! class_exists( 'Book_Manager' ) ) {
 		 */
 		public function init() {
 			// Initialize plugin core
-			Main::get_instance();
+			Book_Manager\Main::get_instance();
 
 			/**
 			 * Triggered when plugin is loaded

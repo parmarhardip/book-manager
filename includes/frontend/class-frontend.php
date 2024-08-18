@@ -14,8 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class Book_Manager_FrontEnd
- * Frontend class of Book Manager.
+ * Class FrontEnd
  */
 class FrontEnd {
 

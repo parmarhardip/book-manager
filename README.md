@@ -21,6 +21,17 @@
 
 ### Gutenberg Block
 
+#### Building Assets
+
+1. **Install Dependencies:**
+    - Navigate to the plugin directory and run `npm install` to install the required dependencies.
+    - This will install the necessary packages for building the assets.
+    - You can also run `npm run build` to build the assets.
+    - For development, you can run `npm run start` to watch for changes and rebuild the assets automatically.
+    - The built assets will be available in the `assets/build` directory.
+   
+#### Block Usage
+
 The plugin provides a Gutenberg block named **"Book Manager"** to display books on your site.
 
 1. **Add the Block:**

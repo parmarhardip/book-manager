@@ -21,7 +21,7 @@
 
 ### Gutenberg Block
 
-#### Building Assets
+#### Building Assets (For Developers)
 
 1. **Install Dependencies:**
     - Navigate to the plugin directory and run `npm install` to install the required dependencies.

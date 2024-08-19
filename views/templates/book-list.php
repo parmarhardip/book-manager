@@ -6,15 +6,7 @@ $args = array(
 	'posts_per_page' => 10,
 );
 
-if ( ! empty( $atts['category'] ) ) {
-	$args['tax_query'] = array(
-		array(
-			'taxonomy' => 'category',
-			'field'    => 'slug',
-			'terms'    => $atts['category'],
-		),
-	);
-} elseif ( isset( $atts['id'] ) ) {
+if ( isset( $atts['id'] ) ) {
 	$args['p'] = $atts['id'];
 }
 

@@ -5,8 +5,8 @@
 		<h2><?php esc_html_e( 'Shortcodes', 'book-manager' ); ?></h2>
 		<p><?php esc_html_e( 'Use the following shortcodes to display books on your site.', 'book-manager' ); ?></p>
 		<ul>
-			<li><code>[book_manager]</code> - <?php esc_html_e( 'Display all books.', 'book-manager' ); ?></li>
-			<li><code>[book_manager id="book-id"]</code> - <?php esc_html_e( 'Display a single book by ID.', 'book-manager' ); ?></li>
+			<li><code>[book_list]</code> - <?php esc_html_e( 'Display all books.', 'book-manager' ); ?></li>
+			<li><code>[book_list id="book-id"]</code> - <?php esc_html_e( 'Display a single book by ID.', 'book-manager' ); ?></li>
 			<li><code>[add_book]</code> - <?php esc_html_e( 'Display a form to submit a new book.', 'book-manager' ); ?></li>
 		</ul>
 
@@ -23,8 +23,8 @@
 		<p><?php esc_html_e( 'To display books on your site, you can use the following shortcodes:', 'book-manager' ); ?></p>
 
 		<ul>
-			<li><code>[book_manager]</code> - <?php esc_html_e( 'Display all books.', 'book-manager' ); ?></li>
-			<li><code>[book_manager id="book-id"]</code> - <?php esc_html_e( 'Display a single book by ID.', 'book-manager' ); ?></li>
+			<li><code>[book_list]</code> - <?php esc_html_e( 'Display all books.', 'book-manager' ); ?></li>
+			<li><code>[book_list id="book-id"]</code> - <?php esc_html_e( 'Display a single book by ID.', 'book-manager' ); ?></li>
 			<li><code>[add_book]</code> - <?php esc_html_e( 'Display a form to submit a new book.', 'book-manager' ); ?></li>
 		</ul>
 
